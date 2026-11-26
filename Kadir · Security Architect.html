@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kadir · Security Architect</title>
+<meta name="description" content="Kadir — Cyber Security Architect. Detection engineering, EDR/SIEM/SOAR mimarisi ve AI SOC platformları.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: kendinden emin, mühendis net; az söz, çok yapı
+   IDEA: bir güvenlik mimarisi şeması — katmanlar üst üste, sinyal yukarı akar
+   PICTURE: EDR → Ağ → SIEM → SOAR → AI SOC katmanlarından oluşan izometrik yığın, yukarı akan sinyal noktaları
+   COLOUR and TYPE: derin yeşil #00463c zemin, lime-beyaz #e6f5c8, mercan #ff6f59 vurgu; Inter Tight 700 + Inter
+   LAYOUT: tam genişlik yeşil hero, beyaz içerik bantları, cetvelli rakam satırı, kart ızgaraları, yeşil footer */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0d1a17);--ink:light-dark(#10201c,#e8f1ec);--mute:light-dark(#4d615b,#9fb5ad);
+--line:light-dark(#d9e3df,#22362f);--card:light-dark(#f4f8f6,#13241f);
+--g:#00463c;--g2:#00362e;--lime:#e6f5c8;--coral:#ff6f59;--acc:light-dark(#00695a,#b9e58a)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Inter Tight",Inter,sans-serif;margin:0;text-wrap:balance}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(40px,6vw,88px) max(5vw,16px)}
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:var(--g);color:#fff;border-bottom:1px solid #ffffff1a}
+nav .wrap{display:flex;align-items:center;gap:20px;padding:12px max(5vw,16px);flex-wrap:wrap}
+.logo{font:700 20px "Inter Tight";text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--lime);color:var(--g);display:grid;place-items:center;font-style:normal;font-size:15px}
+nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto}
+nav ul a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;font-size:15px;color:#d5e9df;white-space:nowrap}
+nav ul a:hover,nav ul a:focus-visible{background:#ffffff14;color:#fff}
+/* hero */
+.hero{background:var(--g);color:#fff;padding-top:clamp(32px,5vw,72px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.role{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--lime);margin-bottom:18px}
+.role b{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px #ff6f5933}
+.hero h1{font-size:clamp(44px,7vw,84px);line-height:1;letter-spacing:-.02em}
+.hero h1 span{display:block;font-size:clamp(26px,3.4vw,40px);font-weight:500;color:var(--lime);margin-top:10px;letter-spacing:-.01em}
+.lead{font-size:17px;color:#cfe3da;max-width:58ch;margin:22px 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{min-height:44px;display:inline-flex;align-items:center;gap:8px;padding:0 18px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid #ffffff40}
+.btn.p{background:var(--lime);color:var(--g);border-color:var(--lime)}
+.btn:hover{filter:brightness(1.08)}.btn:focus-visible,a:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.soc{display:flex;gap:16px;margin-top:22px;font-size:14px;color:#a9cbbd;flex-wrap:wrap}
+.soc a{text-decoration:none;border-bottom:1px solid #ffffff40}
+.fig{position:relative;aspect-ratio:1/0.92;max-height:520px;width:100%}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #ffffff26;margin-top:clamp(32px,5vw,64px)}
+.facts div{padding:22px 16px 30px 0}
+.facts b{display:block;font:700 clamp(28px,3.4vw,40px)/1 "Inter Tight";color:var(--lime)}
+.facts span{font-size:14px;color:#b8d4c8}
+/* sections */
+.kicker{color:var(--acc);font-weight:600;font-size:15px;margin-bottom:8px}
+h2{font-size:clamp(30px,3.6vw,44px);line-height:1.08;letter-spacing:-.015em;margin-bottom:14px}
+.sub{color:var(--mute);max-width:64ch;margin:0 0 36px}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px)}
+.about p{margin:0 0 14px;max-width:66ch}
+.principles{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.principles li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px}
+.principles svg{width:22px;height:22px;margin-top:2px}
+.principles strong{display:block;font-family:"Inter Tight";font-size:18px}
+.principles span{color:var(--mute);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column}
+.card h3{font-size:20px;margin-bottom:6px}
+.card p{margin:0 0 14px;color:var(--mute);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.tags span{font-size:13px;padding:4px 10px;border-radius:999px;background:light-dark(#e3efe9,#1c332c);color:var(--ink)}
+.ico{width:40px;height:40px;border-radius:10px;background:var(--g);display:grid;place-items:center;margin-bottom:14px}
+.ico svg{width:22px;height:22px}
+.status{font-size:13px;font-weight:600;color:var(--acc);margin-bottom:8px}
+.alt{background:var(--card);border-block:1px solid var(--line)}
+.alt .card{background:var(--bg)}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);margin-left:6px}
+.tl li{position:relative;padding:0 0 32px 28px}
+.tl li::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--acc)}
+.tl li:first-child::before{background:var(--coral);border-color:var(--coral)}
+.tl h3{font-size:20px}.tl .org{color:var(--acc);font-weight:600;font-size:15px;margin:2px 0 8px}
+.tl p{margin:0;color:var(--mute);max-width:70ch}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:28px 40px}
+.skills h3{font-size:16px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--acc)}
+.skills ul{list-style:none;margin:0;padding:0;font-size:15px}
+.skills li{padding:5px 0;color:var(--mute)}
+footer{background:var(--g);color:#fff}
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px;align-items:end}
+footer h2{color:#fff}footer .sub{color:#b8d4c8;margin-bottom:0}
+.links{display:flex;flex-direction:column;gap:10px}
+.links a{display:flex;justify-content:space-between;align-items:center;min-height:52px;padding:0 18px;border-radius:12px;background:#ffffff10;border:1px solid #ffffff22;text-decoration:none;font-weight:500}
+.links a:hover{background:#ffffff1c}.links small{color:var(--lime);font-size:14px;overflow-wrap:anywhere;text-align:right;margin-left:12px}
+.copy{border-top:1px solid #ffffff22;margin-top:48px;padding-top:20px;font-size:13px;color:#9cc0b1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.lang{min-height:40px;min-width:48px;padding:0 12px;border-radius:8px;border:1px solid #ffffff40;background:transparent;color:#fff;font:600 14px Inter;cursor:pointer}.lang:hover{background:#ffffff14}.lang:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+@media(max-width:860px){.hero .wrap,.about,.contact{grid-template-columns:minmax(0,1fr)}.fig{max-height:420px}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){nav ul{margin-left:0;width:100%}.facts div{padding-right:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pulse{display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Ana menü"><div class="wrap">
+  <a class="logo" href="#top"><i>K</i>Kadir</a>
+  <ul>
+    <li><a href="#hakkimda" data-k="n1">Hakkımda</a></li>
+    <li><a href="#uzmanlik" data-k="n2">Uzmanlık</a></li>
+    <li><a href="#projeler" data-k="n3">Projeler</a></li>
+    <li><a href="#deneyim" data-k="n4">Deneyim</a></li>
+    <li><a href="#iletisim" data-k="n5">İletişim</a></li>
+  </ul>
+  <button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button>
+</div></nav>
+
+<header class="hero band" id="top"><div class="wrap">
+  <div>
+    <div class="role"><b></b><span data-k="role">Cyber Security Architect · İstanbul</span></div>
+    <h1>Kadir<span data-k="tag">Tespit edebilen güvenlik mimarileri tasarlıyorum.</span></h1>
+    <p class="lead" data-k="lead">EDR, SIEM ve SOAR katmanlarını tek bir tespit mimarisinde birleştiriyorum. MSSP tarafında SOC operasyonunu yönetirken, bu mimarinin üzerine oturan bir AI SOC platformu geliştiriyorum.</p>
+    <div class="btns">
+      <a class="btn p" href="#projeler" data-k="b1">Projeleri gör</a>
+      <a class="btn" href="cv.pdf">CV (PDF)</a>
+      <a class="btn" href="#iletisim" data-k="b2">İletişime geç</a>
+    </div>
+    <div class="soc"><a href="https://www.linkedin.com/in/kkocaer">LinkedIn</a><a href="https://github.com/kkocaer">GitHub</a><a href="mailto:kkocaer@gmail.com">kkocaer@gmail.com</a></div>
+  </div>
+  <div class="fig" id="figl" role="img" aria-label="Güvenlik mimarisi katmanları: EDR ve ağ telemetrisi SIEM'e, SIEM SOAR'a, SOAR AI SOC katmanına akar">
+    <svg id="stack" viewBox="0 0 520 480"></svg>
+  </div>
+</div>
+<div class="wrap facts">
+  <div><b>5</b><span data-k="f1">katmanlı tespit mimarisi</span></div>
+  <div><b>19</b><span data-k="f2">analistlik SOC ekibi (L1/L2)</span></div>
+  <div><b>3</b><span data-k="f3">SIEM platformunda kural yönetimi</span></div>
+  <div><b>7</b><span data-k="f4">platformlu threat hunt kataloğu</span></div>
+</div></header>
+
+<section class="band" id="hakkimda"><div class="wrap about">
+  <div>
+    <div class="kicker" data-k="n1">Hakkımda</div>
+    <h2 data-k="h1">Mimariyi çizen, alarmı da gören taraf</h2>
+    <p data-k="p1">Güvenlik mimarisini kâğıt üzerinde bırakmıyorum: tasarladığım yapının ürettiği her alarmı bir SOC ekibiyle birlikte karşılıyorum. Bu yüzden mimari kararlarımın ölçüsü basit: daha hızlı tespit, daha az gürültü, ölçülebilir müdahale.</p>
+    <p data-k="p2">Odak alanlarım detection engineering, SIEM/SOAR/EDR mimarisi, tehdit istihbaratı entegrasyonu ve NIS2, DORA, BDDK BT Tebliği gibi düzenlemelere uyumlu güvenlik tasarımı. Son dönemde yapay zekânın SOC iş akışlarına nasıl güvenle yerleşeceği üzerine çalışıyorum.</p>
+  </div>
+  <ul class="principles" id="principles"></ul>
+</div></section>
+
+<section class="band alt" id="uzmanlik"><div class="wrap">
+  <div class="kicker" data-k="n2">Uzmanlık</div>
+  <h2 data-k="h2">Mimari alanlarım</h2>
+  <p class="sub" data-k="s2">Telemetri toplamaktan otomatik müdahaleye kadar, tespit zincirinin her halkası.</p>
+  <div class="grid" id="areas"></div>
+</div></section>
+
+<section class="band" id="projeler"><div class="wrap">
+  <div class="kicker" data-k="n3">Projeler</div>
+  <h2 data-k="h3">Üzerinde çalıştıklarım</h2>
+  <p class="sub" data-k="s3">SOC'ta karşılaştığım boşluklardan doğan araçlar ve platformlar.</p>
+  <div class="grid" id="projects"></div>
+</div></section>
+
+<section class="band alt" id="deneyim"><div class="wrap about">
+  <div>
+    <div class="kicker" data-k="n4">Deneyim</div>
+    <h2 data-k="h4">Yol haritası</h2>
+    <ol class="tl" id="timeline"></ol>
+  </div>
+  <div>
+    <div class="kicker" data-k="k5">Teknoloji</div>
+    <h2 data-k="h5">Çalıştığım platformlar</h2>
+    <div class="skills" id="skills"></div>
+  </div>
+</div></section>
+
+<footer class="band" id="iletisim"><div class="wrap">
+  <div class="contact">
+    <div>
+      <div class="kicker" style="color:var(--lime)" data-k="n5">İletişim</div>
+      <h2 data-k="h6">Bir tespit mimarisi mi kuruyorsunuz?</h2>
+      <p class="sub" data-k="s6">SOC dönüşümü, SIEM/SOAR mimarisi, detection engineering programı veya AI SOC üzerine konuşmaya her zaman açığım.</p>
+    </div>
+    <div class="links" id="links"></div>
+  </div>
+  <div class="copy"><span>© <span id="yr"></span> Kadir</span><span data-k="note">Cyber Security Architect · İstanbul</span></div>
+</div></footer>
+
+<script>
+{
+const I={
+ shield:'<path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/>',
+ radar:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 12 18 6"/>',
+ flow:'<rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><path d="M6.5 10v4a3 3 0 0 0 3 3H14"/>',
+ brain:'<path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-2 5 3 3 0 0 0 3 5 3 3 0 0 0 5 0V6a2 2 0 0 0-3-2zm6 0a3 3 0 0 1 3 3v1a3 3 0 0 1 2 5 3 3 0 0 1-3 5 3 3 0 0 1-5 0"/>',
+ doc:'<path d="M6 3h8l4 4v14H6z"/><path d="M9 12h6M9 16h6"/>',
+ target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
+ eye:'<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ check:'<path d="m5 12 4 4 10-10"/>'
+};
+const svg=(k,c='#e6f5c8')=>`<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${I[k]}</svg>`;
+
+const EN={
+ n1:'About',n2:'Expertise',n3:'Projects',n4:'Experience',n5:'Contact',
+ role:'Cyber Security Architect · Istanbul',
+ tag:'I design security architectures that actually detect.',
+ lead:'I bring EDR, SIEM and SOAR together into a single detection architecture. While running SOC operations on the MSSP side, I am building an AI SOC platform on top of that architecture.',
+ b1:'See projects',b2:'Get in touch',
+ f1:'layer detection architecture',f2:'analyst SOC team (L1/L2)',f3:'SIEM platforms under rule management',f4:'platform threat hunt catalog',
+ h1:'The one who draws the architecture and sees the alerts',
+ p1:'I don’t leave security architecture on paper: every alert produced by what I design is handled by a SOC team I work with. So my architectural decisions are measured simply: faster detection, less noise, measurable response.',
+ p2:'My focus areas are detection engineering, SIEM/SOAR/EDR architecture, threat intelligence integration and security design aligned with regulations such as NIS2, DORA and the BDDK IT Regulation. Lately I work on how AI can be safely embedded into SOC workflows.',
+ h2:'Architecture domains',s2:'Every link of the detection chain, from telemetry collection to automated response.',
+ h3:'What I’m working on',s3:'Tools and platforms born from gaps I ran into in the SOC.',
+ h4:'Roadmap',k5:'Technology',h5:'Platforms I work with',
+ h6:'Building a detection architecture?',s6:'Always open to talk about SOC transformation, SIEM/SOAR architecture, detection engineering programs or AI SOC.',
+ note:'Cyber Security Architect · Istanbul',
+ figl:'Security architecture layers: EDR and network telemetry flow into SIEM, SIEM into SOAR, SOAR into the AI SOC layer'
+};
+const principles=[
+ [['Önce görünürlük','Visibility first'],['Göremediğin şeyi tespit edemezsin; mimari telemetri kapsamıyla başlar.','You can’t detect what you can’t see; architecture starts with telemetry coverage.']],
+ [['Kural değil, kapsama','Coverage, not rules'],['Her kural bir MITRE ATT&CK tekniğine ve test edilebilir bir senaryoya bağlanır.','Every rule maps to a MITRE ATT&CK technique and a testable scenario.']],
+ [['Otomasyon, insanla','Automation, with humans'],['AI ve SOAR tekrarı üstlenir; karar ve bağlam analistte kalır.','AI and SOAR take the repetition; judgement and context stay with the analyst.']],
+ [['Ölçülebilir SOC','Measurable SOC'],['MTTD, MTTR, SLA ve FP oranı mimarinin karnesidir.','MTTD, MTTR, SLA and FP rate are the architecture’s report card.']]
+];
+const areas=[
+ ['radar','Detection Engineering',['Kural yaşam döngüsü, MITRE ATT&CK eşlemesi, FP azaltma ve çoklu SIEM için ana kural listesi yönetimi.','Rule lifecycle, MITRE ATT&CK mapping, FP reduction and master rule list management across multiple SIEMs.'],['Sigma','MITRE ATT&CK','Detection-as-Code']],
+ ['flow',['SIEM · SOAR · EDR Mimarisi','SIEM · SOAR · EDR Architecture'],['Log toplama, korelasyon ve otomatik müdahale katmanlarının uçtan uca tasarımı ve entegrasyonu.','End-to-end design and integration of log collection, correlation and automated response layers.'],['QRadar','Trellix','FortiSIEM','FortiSOAR']],
+ ['brain','AI SOC',['LLM destekli triyaj, hibrit otonomi modeli ve analist geri bildirimiyle öğrenen SOC akışları.','LLM-assisted triage, a hybrid autonomy model and SOC workflows that learn from analyst feedback.'],['LLM','Agentic workflows','Local LLM']],
+ ['eye',['Tehdit İstihbaratı & ASM','Threat Intelligence & ASM'],['CTI, dijital risk ve saldırı yüzeyi verisinin SIEM/SOAR\'a beslenmesi.','Feeding CTI, digital risk and attack surface data into SIEM/SOAR.'],['MISP','CTI','ASM']],
+ ['target',['Tespit Doğrulama','Detection Validation'],['BAS ve Caldera senaryolarıyla kuralların gerçekten tetiklendiğini kanıtlama.','Proving that rules actually fire, using BAS and Caldera scenarios.'],['MITRE Caldera','BAS','Purple teaming']],
+ ['doc',['Uyum Odaklı Tasarım','Compliance-driven Design'],['Düzenleyici gereksinimleri teknik kontrollere ve izlenebilir SOC süreçlerine çevirme.','Translating regulatory requirements into technical controls and traceable SOC processes.'],['NIS2','DORA',['BDDK BT Tebliği','BDDK IT Regulation']]]
+];
+const projects=[
+ ['brain','Duru Ela',['Geliştiriliyor','In development'],['L1/L2 analist iş akışını hibrit otonomiyle destekleyen AI SOC platformu.','AI SOC platform supporting L1/L2 analyst workflows with hybrid autonomy.'],['AI SOC','LLM','SOAR']],
+ ['target','socgap',['Geliştiriliyor','In development'],['SIEM kurallarından ve müşteri tehdit yüzeyinden MITRE Caldera ability setleri üreten çok kiracılı tespit doğrulama aracı.','Multitenant detection validation tool that generates MITRE Caldera ability sets from SIEM rules and customer threat surface.'],['Caldera','QRadar','Multitenant']],
+ ['radar','vulnradar',['Geliştiriliyor','In development'],['KEV, CVSS ve EPSS verisini birleştirip analistlere haftalık kural adayı raporu gönderen zafiyet istihbarat uygulaması.','Vulnerability intel app that combines KEV, CVSS and EPSS data and mails analysts a weekly rule-candidate report.'],['KEV','EPSS','LLM']],
+ ['eye','C2sense',['Prototip','Prototype'],['tcpdump çıktılarını yerel LLM ile analiz edip C2 trafiği izlerini öne çıkaran araç.','Tool that analyzes tcpdump output with a local LLM to surface C2 traffic traces.'],['Network','Local LLM','C2']],
+ ['shield','PolicyFabric',['Tasarım','Design'],['OPA üzerine kurulu, üretici bağımsız güvenlik politikası uygulama platformu.','Vendor-agnostic security policy enforcement platform built on OPA.'],['OPA','Policy-as-Code']],
+ ['doc','ir-scenario-vault',['Açık kaynak','Open source'],['Masa başı tatbikatlar (TTX) için olay müdahale senaryo kütüphanesi.','Incident response scenario library for tabletop exercises (TTX).'],['Incident Response','TTX','GitHub']]
+];
+const timeline=[
+ [['SOC Yöneticisi & Güvenlik Mimarı','SOC Manager & Security Architect'],['MSSP · Bugün','MSSP · Present'],['13 L1 ve 6 L2 analistten oluşan SOC ekibini yönetiyor; müşteri ortamlarında SIEM, SOAR ve EDR mimarisini tasarlayıp devralıyorum.','I lead a SOC team of 13 L1 and 6 L2 analysts, and design and take over SIEM, SOAR and EDR architecture in customer environments.']],
+ [['AI SOC Platform Geliştirme','AI SOC Platform Development'],['Ürün · Bugün','Product · Present'],['SOC operasyonundan çıkan ihtiyaçlarla AI destekli triyaj ve otomasyon platformu geliştiriyorum.','I build an AI-assisted triage and automation platform shaped by real SOC operations needs.']],
+ ['Detection Engineering',['Uzmanlık alanı','Core expertise'],['Çoklu SIEM ortamlarında kural geliştirme, eşitleme ve tespit kapsamı ölçümü.','Rule development, equalization and detection coverage measurement across multi-SIEM environments.']]
+];
+const skills=[
+ ['SIEM',['IBM QRadar','Trellix ESM','FortiSIEM','Splunk']],
+ [['SOAR & Otomasyon','SOAR & Automation'],['FortiSOAR','Shuffle','TheHive']],
+ ['EDR / XDR',['CrowdStrike Falcon','Microsoft Defender','Cortex XDR']],
+ [['İstihbarat & Doğrulama','Intel & Validation'],['MISP','MITRE Caldera','MITRE ATT&CK']]
+];
+const links=[
+ [['E-posta','Email'],'kkocaer@gmail.com','mailto:kkocaer@gmail.com'],
+ ['LinkedIn','/in/kkocaer','https://www.linkedin.com/in/kkocaer'],
+ ['GitHub','@kkocaer','https://github.com/kkocaer'],
+ ['CV',['PDF indir','Download PDF'],'cv.pdf']
+];
+
+const $=id=>document.getElementById(id);
+let lang='tr';
+try{lang=localStorage.getItem('lang')||((navigator.language||'').toLowerCase().startsWith('tr')?'tr':'en')}catch(e){}
+const t=(a,b)=>lang==='en'?b:a;
+const L=v=>Array.isArray(v)?t(v[0],v[1]):v;
+const tags=g=>`<div class="tags">${g.map(x=>`<span>${L(x)}</span>`).join('')}</div>`;
+const TR={};
+document.querySelectorAll('[data-k]').forEach(el=>{TR[el.dataset.k]=el.textContent});
+TR.figl=$('figl').getAttribute('aria-label');
+const setLang=l=>{
+ lang=l;
+ try{localStorage.setItem('lang',l)}catch(e){}
+ document.documentElement.lang=l;
+ document.querySelectorAll('[data-k]').forEach(el=>{el.textContent=l==='en'?EN[el.dataset.k]:TR[el.dataset.k]});
+ $('figl').setAttribute('aria-label',l==='en'?EN.figl:TR.figl);
+ const b=$('lang');b.textContent=l==='en'?'TR':'EN';b.setAttribute('aria-label',l==='en'?'Türkçeye geç':'Switch to English');
+ $('principles').innerHTML=principles.map(([a,d])=>`<li>${svg('check','currentColor')}<div><strong>${L(a)}</strong><span>${L(d)}</span></div></li>`).join('');
+ $('areas').innerHTML=areas.map(([i,a,d,g])=>`<article class="card"><div class="ico">${svg(i)}</div><h3>${L(a)}</h3><p>${L(d)}</p>${tags(g)}</article>`).join('');
+ $('projects').innerHTML=projects.map(([i,a,st,d,g])=>`<article class="card"><div class="ico">${svg(i)}</div><div class="status">${L(st)}</div><h3>${a}</h3><p>${L(d)}</p>${tags(g)}</article>`).join('');
+ $('timeline').innerHTML=timeline.map(([a,o,d])=>`<li><h3>${L(a)}</h3><div class="org">${L(o)}</div><p>${L(d)}</p></li>`).join('');
+ $('skills').innerHTML=skills.map(([a,l])=>`<div><h3>${L(a)}</h3><ul>${l.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+ $('links').innerHTML=links.map(([a,s,h])=>`<a href="${h}"><span>${L(a)}</span><small>${L(s)}</small></a>`).join('');
+ drawStack();
+};
+$('lang').addEventListener('click',()=>setLang(lang==='en'?'tr':'en'));
+$('yr').textContent=new Date().getFullYear();
+
+/* architecture stack picture */
+function drawStack(){
+const layers=[
+ ['AI SOC',t('triyaj · karar desteği','triage · decision support'),'#ff6f59','#d9503c','#ffb0a3'],
+ ['SOAR',t('otomatik müdahale','automated response'),'#e6f5c8','#b9d49a','#ffffff'],
+ ['SIEM',t('korelasyon · tespit','correlation · detection'),'#7fc8a9','#58a487','#b5e6cf'],
+ [t('Ağ / IPS','Network / IPS'),t('trafik telemetrisi','traffic telemetry'),'#2f8f78','#1f6e5c','#5fb9a0'],
+ ['EDR',t('uç nokta telemetrisi','endpoint telemetry'),'#1d6f5f','#13534a','#3f9483']
+];
+const cx=190,w=150,h=58,depth=22,gap=78,top0=70;
+let s='<defs><filter id="sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#001a16" flood-opacity=".45"/></filter></defs>';
+s+=`<path d="M${cx} ${top0+20} V${top0+gap*4+depth+20}" stroke="#e6f5c855" stroke-width="2" stroke-dasharray="3 6"/>`;
+layers.slice().reverse().forEach((L,ri)=>{
+ const i=layers.length-1-ri,y=top0+i*gap;
+ const t=`M${cx} ${y} L${cx+w} ${y+h/2} L${cx} ${y+h} L${cx-w} ${y+h/2}Z`;
+ const l=`M${cx-w} ${y+h/2} L${cx} ${y+h} L${cx} ${y+h+depth} L${cx-w} ${y+h/2+depth}Z`;
+ const r=`M${cx+w} ${y+h/2} L${cx} ${y+h} L${cx} ${y+h+depth} L${cx+w} ${y+h/2+depth}Z`;
+ s+=`<g filter="url(#sh)"><path d="${l}" fill="${L[3]}"/><path d="${r}" fill="${L[3]}" opacity=".8"/><path d="${t}" fill="${L[2]}"/><path d="M${cx-w} ${y+h/2} L${cx} ${y}" stroke="${L[4]}" stroke-width="2" opacity=".7"/></g>`;
+ for(let k=-2;k<=2;k++)s+=`<circle cx="${cx+k*26}" cy="${y+h/2+Math.abs(k)*0}" r="2.4" fill="${i<2?'#00463c':'#e6f5c8'}" opacity=".55"/>`;
+ s+=`<path d="M${cx+w+8} ${y+h/2+depth/2} H${cx+w+30}" stroke="#e6f5c866" stroke-width="1.5"/>`;
+ s+=`<text x="${cx+w+38}" y="${y+h/2+depth/2-2}" fill="#ffffff" font-family="Inter Tight" font-weight="700" font-size="19">${L[0]}</text>`;
+ s+=`<text x="${cx+w+38}" y="${y+h/2+depth/2+17}" fill="#b8d4c8" font-family="Inter" font-size="13">${L[1]}</text>`;
+});
+for(let p=0;p<3;p++)s+=`<circle class="pulse" cx="${cx}" cy="${top0+gap*4+h/2}" r="5" fill="#ff6f59" opacity="0"><animate attributeName="cy" from="${top0+gap*4+h/2}" to="${top0+h/2}" dur="3.6s" begin="${p*1.2}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" dur="3.6s" begin="${p*1.2}s" repeatCount="indefinite"/><set attributeName="cx" to="${cx}"/></circle>`;
+$('stack').innerHTML=s;
+}
+setLang(lang);
+}
+</script>
+</body>
+</html>
